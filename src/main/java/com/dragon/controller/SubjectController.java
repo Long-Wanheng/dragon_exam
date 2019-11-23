@@ -37,7 +37,7 @@ public class SubjectController {
     }
 
     @RequestMapping("/delete")
-    public ResultSet delete(Long id) {
-        return ResultSet.view(subjectService.deleteSubject(id));
+    public ResultSet delete(@RequestBody SubjectDTO subject) {
+        return ResultSet.view(subjectService.deleteSubject(subject.getId()));
     }
 }

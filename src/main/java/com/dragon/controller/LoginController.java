@@ -3,6 +3,7 @@ package com.dragon.controller;
 import com.dragon.exception.DragonException;
 import com.dragon.model.dto.OnlineUserDTO;
 import com.dragon.model.dto.UserDTO;
+import com.dragon.model.query.LoginQuery;
 import com.dragon.model.vo.UserVO;
 import com.dragon.service.OnlineUserService;
 import com.dragon.service.UserService;
@@ -14,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,11 +38,11 @@ public class LoginController {
     private OnlineUserService onlineUserService;
 
     @RequestMapping("/login")
-    public ResultSet login(String loginParam, String password) {
+    public ResultSet login(@RequestBody LoginQuery query) {
         //参数校验
-        checkParam(loginParam, password);
+        checkParam(query);
         //执行登录
-        UserDTO userDTO = userService.getLoginUser(loginParam, password);
+        UserDTO userDTO = userService.getLoginUser(query.getLoginParam(), query.getPassword());
         OnlineUserDTO onlineUse = new OnlineUserDTO();
         BeanUtils.copyProperties(userDTO, onlineUse);
         //设置token
@@ -61,8 +63,8 @@ public class LoginController {
     }
 
 
-    private void checkParam(String loginParam, String password) {
-        if (StringUtils.isBlank(loginParam) || StringUtils.isBlank(password)) {
+    private void checkParam(LoginQuery query) {
+        if (null == query || StringUtils.isBlank(query.getLoginParam()) || StringUtils.isBlank(query.getPassword())) {
             throw new DragonException("登录信息不能为空!");
         }
     }
