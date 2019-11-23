@@ -26,4 +26,20 @@ public interface UserMapper {
      */
     UserDTO selectUserByEmail(@Param("email") String email);
 
+    /**
+     * 根据昵称获取用户密码
+     *
+     * @param nickName 昵称
+     * @return 用户密码
+     */
+    UserDTO getPassWordByNickName(@Param("nickName") String nickName);
+
+    /**
+     * 根据用户id修改密码
+     *
+     * @param user 用户实体类
+     * @return 修改条数
+     */
+    int updatePasswordById(@Param("user") UserDTO user);
+
 }

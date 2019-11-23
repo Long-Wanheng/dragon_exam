@@ -3,6 +3,7 @@ package com.dragon.service.impl;
 import com.dragon.exception.DragonException;
 import com.dragon.mapper.UserMapper;
 import com.dragon.model.dto.UserDTO;
+import com.dragon.model.query.PassWordChangeQuery;
 import com.dragon.service.UserService;
 import com.dragon.utils.DigestUtils;
 import com.dragon.utils.LoginParamType;
@@ -10,6 +11,8 @@ import com.dragon.utils.UserUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 
 /**
@@ -42,6 +45,30 @@ public class UserServiceImpl implements UserService {
         }
         UserUtils.infoDesensitization(user);
         return user;
+    }
+
+    @Override
+    public boolean updatePassWord(PassWordChangeQuery query) {
+        if (null == query || StringUtils.isBlank(query.getFirstPassword()) ||
+                StringUtils.isBlank(query.getRepeatPassword()) || StringUtils.isBlank(query.getPassword())) {
+            throw new DragonException("两次密码不能为空");
+        }
+        if (!(query.getFirstPassword().equals(query.getRepeatPassword()))) {
+            throw new DragonException("两次密码不一致");
+        }
+        Optional<UserDTO> optionalUser = UserUtils.getCurrentUser();
+        UserDTO currentUser = optionalUser.get();
+        UserDTO user = userMapper.getPassWordByNickName(currentUser.getNickName());
+        //密码校验
+        String truePassword = user.getPassword();
+        String md5Password = DigestUtils.getMD5(query.getPassword() + user.getPrivateKey());
+        if (!(truePassword.equals(md5Password))) {
+            throw new DragonException("密码错误");
+        }
+        UserDTO updateUser = new UserDTO();
+        updateUser.setId(user.getId());
+        updateUser.setPassword(query.getFirstPassword());
+        return userMapper.updatePasswordById(updateUser) > 0;
     }
 
     /**

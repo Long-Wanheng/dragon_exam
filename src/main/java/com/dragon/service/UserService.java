@@ -1,6 +1,7 @@
 package com.dragon.service;
 
 import com.dragon.model.dto.UserDTO;
+import com.dragon.model.query.PassWordChangeQuery;
 
 /**
  * UserService
@@ -19,4 +20,12 @@ public interface UserService {
      * @return 登录用户
      */
     UserDTO getLoginUser(String loginParam, String password);
+
+    /**
+     * 修改用户密码
+     *
+     * @param query 条件
+     * @return 是否成功
+     */
+    boolean updatePassWord(PassWordChangeQuery query);
 }

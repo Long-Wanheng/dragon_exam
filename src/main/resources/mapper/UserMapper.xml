@@ -31,4 +31,14 @@
         from user
         where email = #{email}
     </select>
+
+    <select id="getPassWordByNickName" parameterType="java.lang.String" resultMap="baseResultMap">
+        select password,private_key,id
+        from user
+        where nick_name = #{nickName}
+    </select>
+
+    <update id="updatePasswordById" parameterType="com.dragon.model.dto.UserDTO">
+        update user set password = #{user.password} where id = #{user.id}
+    </update>
 </mapper>

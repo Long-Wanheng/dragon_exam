@@ -4,6 +4,7 @@ import com.dragon.exception.DragonException;
 import com.dragon.model.dto.OnlineUserDTO;
 import com.dragon.model.dto.UserDTO;
 import com.dragon.model.query.LoginQuery;
+import com.dragon.model.query.PassWordChangeQuery;
 import com.dragon.model.vo.UserVO;
 import com.dragon.service.OnlineUserService;
 import com.dragon.service.UserService;
@@ -60,6 +61,11 @@ public class LoginController {
     public ResultSet logout() {
         Optional<String> token = UserUtils.getCurrentToken();
         return ResultSet.view(onlineUserService.deleteOnlineUserByToken(token.get()));
+    }
+
+    @RequestMapping("/passwordChange")
+    public ResultSet passwordChange(PassWordChangeQuery query) {
+        return ResultSet.view(userService.updatePassWord(query));
     }
 
 
