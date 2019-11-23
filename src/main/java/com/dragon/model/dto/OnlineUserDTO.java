@@ -71,4 +71,15 @@ public class OnlineUserDTO {
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
+
+    @Override
+    public String toString() {
+        return "OnlineUserDTO{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", token='" + token + '\'' +
+                ", createTime=" + createTime +
+                ", isDelete=" + isDelete +
+                '}';
+    }
 }

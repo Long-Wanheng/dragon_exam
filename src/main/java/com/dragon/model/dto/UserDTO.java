@@ -107,4 +107,18 @@ public class UserDTO {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", nickName='" + nickName + '\'' +
+                ", realName='" + realName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", privateKey='" + privateKey + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

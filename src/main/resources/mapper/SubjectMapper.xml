@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragon.mapper.SubjectMapper">
+    <resultMap id="baseResultMap" type="com.dragon.model.dto.SubjectDTO">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="payment" column="payment"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createUser" column="create_user"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="isDelete" column="is_delete"/>
+    </resultMap>
+
+    <sql id="base_column">
+        id, name, payment, remark, create_time, create_user, update_time, update_user, is_delete
+    </sql>
+
+    <select id="getAllSubject" resultMap="baseResultMap">
+        select
+        <include refid="base_column"/>
+        from subject
+        where is_delete = 0
+    </select>
+
+    <insert id="addSubject" parameterType="com.dragon.model.dto.SubjectDTO" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into subject
+        (
+          name,
+          payment,
+          remark;
+          create_time,
+          create_user,
+          update_time,
+        )values(
+          #{subject.name},
+          #{subject.payment},
+          #{subject.remark},
+          #{subject.createTime},
+          #{subject.createUser},
+          #{subject.updateTime},
+        )
+    </insert>
+
+    <update id="updateSubject" parameterType="com.dragon.model.dto.SubjectDTO">
+        update subject
+        <set>
+            <if test="subject.name != null and subject.name != ''">
+                name = #{subject.name},
+            </if>
+            <if test="subject.payment != null">
+                payment = #{subject.payment},
+            </if>
+            <if test="subject.remark != null and subject.remark != ''">
+                remark = #{subject.remark},
+            </if>
+            <if test="subject.updateTime != null">
+                update_time = #{subject.update_time},
+            </if>
+            <if test="subject.updateUser != null and subject.updateUser != ''">
+                update_user = #{subject.updateUser}
+            </if>
+        </set>
+        where id = #{subject.id}
+    </update>
+
+    <update id="deleteSubject" parameterType="java.lang.Integer">
+        update subject set is_delete = 1 where id = #{id}
+    </update>
+</mapper>
