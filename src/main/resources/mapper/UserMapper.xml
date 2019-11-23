@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragon.mapper.UserMapper">
+    <resultMap id="baseResultMap" type="com.dragon.model.dto.UserDTO">
+        <id property="id" column="id"/>
+        <result property="nickName" column="nick_name"/>
+        <result property="realName" column="real_name"/>
+        <result property="email" column="email"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="password" column="password"/>
+        <result property="privateKey" column="private_key"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="base_column">
+        id, nick_name, real_name, email, phone_number, password, private_key, create_time
+    </sql>
+
+    <select id="selectUserByNickName" resultMap="baseResultMap">
+        select
+        <include refid="base_column"/>
+        from user
+        where nick_name = #{nickName}
+    </select>
+
+    <select id="selectUserByEmail" resultMap="baseResultMap">
+        select
+        <include refid="base_column"/>
+        from user
+        where email = #{email}
+    </select>
+</mapper>
