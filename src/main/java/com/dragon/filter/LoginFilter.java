@@ -27,10 +27,6 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-
-        // 请求的url
-        // 相对路径
-
-
+        // TODO 拦截逻辑 & 添加 online user
     }
 }
