@@ -10,6 +10,8 @@ import com.dragon.utils.OnlineUserUtil;
 import com.dragon.utils.ResultSet;
 import com.dragon.utils.UserUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,7 @@ import java.util.Optional;
  */
 @RestController
 public class LoginController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private UserService userService;
@@ -47,6 +50,7 @@ public class LoginController {
         UserVO userVO = onlineUserService.addOnlineUser(onlineUse);
         UserUtils.setCurrentUser(userDTO);
         UserUtils.setCurrentToken(token);
+        LOGGER.info(" 用户 {} 登录成功", userVO.getNickName());
         return ResultSet.view(userVO);
     }
 
