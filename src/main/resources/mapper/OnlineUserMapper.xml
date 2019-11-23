@@ -28,7 +28,7 @@
         )
     </insert>
 
-    <update id="deleteOnlineUserByToken" parameterType="java.lang.Integer">
+    <update id="deleteOnlineUserByToken" parameterType="java.lang.Long">
         update online_user
         set is_delete = 1
         where token = #{token}

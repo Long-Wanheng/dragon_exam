@@ -65,7 +65,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public boolean deleteSubject(Integer id) {
+    public boolean deleteSubject(Long id) {
         if (null == id || id <= 0) {
             throw new DragonException("参数异常");
         }

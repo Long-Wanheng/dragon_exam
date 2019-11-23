@@ -25,7 +25,7 @@ public interface SubjectService {
      * 添加科目
      *
      * @param subject 科目实体类
-     * @return 添加条数
+     * @return 是否添加成功
      */
     boolean addSubject(SubjectDTO subject);
 
@@ -33,7 +33,7 @@ public interface SubjectService {
      * 修改科目
      *
      * @param subject 科目实体类
-     * @return 修改条数
+     * @return 是否修改成功过
      */
     boolean updateSubject(SubjectDTO subject);
 
@@ -41,7 +41,7 @@ public interface SubjectService {
      * 删除科目
      *
      * @param id 科目实体类
-     * @return 删除条数
+     * @return 是否删除成功
      */
-    boolean deleteSubject(Integer id);
+    boolean deleteSubject(Long id);
 }

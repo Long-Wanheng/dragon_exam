@@ -25,7 +25,7 @@ public interface OnlineUserService {
      * 根据token删除在线用户
      *
      * @param token token
-     * @return 删除条数
+     * @return 是否添加成功
      */
     boolean deleteOnlineUserByToken(String token);
 

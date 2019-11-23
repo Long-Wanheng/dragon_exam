@@ -44,6 +44,6 @@ public interface SubjectMapper {
      * @param id 科目实体类
      * @return 删除条数
      */
-    int deleteSubject(@Param("id") Integer id);
+    int deleteSubject(@Param("id") Long id);
 
 }
