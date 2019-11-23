@@ -28,16 +28,18 @@ public class UserServiceImpl implements UserService {
         verificationLoginParam(loginParam, password);
         int loginType = LoginParamType.getLoginParamType(loginParam);
         UserDTO user = null;
+        //登录类型校验
         if (LoginParamType.EMAIL == loginType) {
             user = userMapper.selectUserByEmail(loginParam);
         } else {
             user = userMapper.selectUserByNickName(loginParam);
         }
-        if (verificationPassword(user, password)) {
-            return user;
-        } else {
-            return null;
+        //密码校验
+        boolean check = verificationPassword(user, password);
+        if (!check) {
+            throw new DragonException("用户名或密码错误");
         }
+        return user;
     }
 
     /**
