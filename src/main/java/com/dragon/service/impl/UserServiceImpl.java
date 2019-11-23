@@ -6,6 +6,7 @@ import com.dragon.model.dto.UserDTO;
 import com.dragon.service.UserService;
 import com.dragon.utils.DigestUtils;
 import com.dragon.utils.LoginParamType;
+import com.dragon.utils.UserUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserService {
         if (!check) {
             throw new DragonException("用户名或密码错误");
         }
+        UserUtils.infoDesensitization(user);
         return user;
     }
 
