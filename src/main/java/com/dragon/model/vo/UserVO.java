@@ -25,9 +25,9 @@ public class UserVO {
      */
     private String phoneNumber;
     /**
-     * uuid
+     * token
      */
-    private String uuid;
+    private String token;
 
     public String getNickName() {
         return nickName;
@@ -61,11 +61,11 @@ public class UserVO {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getUuid() {
-        return uuid;
+    public String getToken() {
+        return token;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setToken(String token) {
+        this.token = token;
     }
 }

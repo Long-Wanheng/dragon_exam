@@ -1,10 +1,17 @@
 package com.dragon.common;
 
+import com.dragon.interceptor.TokenInterceptor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * WelcomeConfig
@@ -35,6 +42,23 @@ public class WelcomeConfig extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/templates/**")
                 .addResourceLocations("classpath:/templates/");
         super.addResourceHandlers(registry);
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // addPathPatterns 用于添加拦截规则, 这里假设拦截 /url 后面的全部链接
+        List<String> includePathPatterns = new ArrayList<String>();
+        includePathPatterns.add("/**/**");
+        // excludePathPatterns 用户排除拦截
+        List<String> excludePathPatterns = new ArrayList<String>();
+        excludePathPatterns.add("/login");
+        excludePathPatterns.add("/logout");
+        registry.addInterceptor(getTokenInterceptor()).addPathPatterns(includePathPatterns).excludePathPatterns(excludePathPatterns);
+    }
+
+    @Bean
+    public HandlerInterceptor getTokenInterceptor() {
+        return new TokenInterceptor();
     }
 
 }

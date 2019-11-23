@@ -19,9 +19,9 @@ public class OnlineUserDTO {
      */
     private Long userId;
     /**
-     * uuid
+     * token
      */
-    private String uuid;
+    private String token;
     /**
      * 登录(创建)时间
      */
@@ -48,12 +48,12 @@ public class OnlineUserDTO {
         this.userId = userId;
     }
 
-    public String getUuid() {
-        return uuid;
+    public String getToken() {
+        return token;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Date getCreateTime() {

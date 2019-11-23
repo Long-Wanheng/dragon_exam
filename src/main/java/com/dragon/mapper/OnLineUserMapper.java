@@ -22,18 +22,18 @@ public interface OnLineUserMapper {
     int addOnlineUser(@Param("onlineUser") OnlineUserDTO onlineUserDTO);
 
     /**
-     * 根据uuid删除在线用户
+     * 根据token删除在线用户
      *
-     * @param uuid uuid
+     * @param token token
      * @return 删除条数
      */
-    int deleteOnlineUserByUUID(@Param("uuid") String uuid);
+    int deleteOnlineUserByToken(@Param("token") String token);
 
     /**
-     * 根据uuid获取
+     * 根据token获取
      *
-     * @param uuid uuid
+     * @param token token
      * @return 用户展示实体类
      */
-    UserVO getLoginUserByUUID(@Param("uuid") String uuid);
+    UserVO getLoginUserByToken(@Param("token") String token);
 }
