@@ -23,7 +23,7 @@
         create_time
         )values(
         #{onlineUser.token},
-        #{onlineUser.userId}
+        #{onlineUser.userId},
         #{onlineUser.createTime}
         )
     </insert>
