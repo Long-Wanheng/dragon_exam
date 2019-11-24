@@ -47,6 +47,5 @@ public class UserUtils {
         user.setPassword(null);
         user.setId(null);
         user.setPrivateKey(null);
-        user.setCreateTime(null);
     }
 }

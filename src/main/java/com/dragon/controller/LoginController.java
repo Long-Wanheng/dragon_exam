@@ -40,13 +40,13 @@ public class LoginController {
 
     @RequestMapping("/login")
     public ResultSet login(@RequestBody LoginQuery query) {
-        LOGGER.info("请求");
         //参数校验
         checkParam(query);
         //执行登录
         UserDTO userDTO = userService.getLoginUser(query.getLoginParam(), query.getPassword());
         OnlineUserDTO onlineUse = new OnlineUserDTO();
         BeanUtils.copyProperties(userDTO, onlineUse);
+        onlineUse.setUserId(userDTO.getId());
         //设置token
         String token = OnlineUserUtil.getTokenByUser(userDTO);
         onlineUse.setToken(token);
@@ -54,6 +54,7 @@ public class LoginController {
         UserVO userVO = onlineUserService.addOnlineUser(onlineUse);
         UserUtils.setCurrentUser(userDTO);
         UserUtils.setCurrentToken(token);
+        BeanUtils.copyProperties(userDTO, userVO);
         LOGGER.info(" 用户 {} 登录成功", userVO.getNickName());
         return ResultSet.view(userVO);
     }
