@@ -26,7 +26,7 @@ public class ExamLogController {
     private ExamLogService examLogService;
 
     @RequestMapping("/list")
-    public TableData<ExamLogVO> list(ExamLogQuery query) {
+    public TableData<ExamLogVO> list(@RequestBody ExamLogQuery query) {
         return examLogService.queryExamLog(query);
     }
 

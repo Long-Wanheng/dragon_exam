@@ -54,7 +54,7 @@ public class HelloWorldTeach {
     *       这样做的好处是，我可以清晰的看出这是一个类,并且知道这个类的意义。
     *
     *       同理 在看到 getUserInfo()的时候，首先就能明白 这是一个方法，这个方法的作用是获取用户信息(方法里面的逻辑先不管)
-    *a
+    *
     * *重要的一点！！！*
     *   不论是类名、方法名、变量名 都不能是java中的关键字
     *   比如 class static{} void() int public = 1;

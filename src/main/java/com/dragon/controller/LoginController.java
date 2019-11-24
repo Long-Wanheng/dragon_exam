@@ -40,6 +40,7 @@ public class LoginController {
 
     @RequestMapping("/login")
     public ResultSet login(@RequestBody LoginQuery query) {
+        LOGGER.info("请求");
         //参数校验
         checkParam(query);
         //执行登录
