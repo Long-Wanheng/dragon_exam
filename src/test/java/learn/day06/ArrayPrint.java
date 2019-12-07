@@ -8,6 +8,12 @@ package learn.day06;
  * @date : 2019-12-07 15:46
  */
 public class ArrayPrint {
+
+    public static void print() {
+        System.out.println("ArrayPrint 的方法执行啦！！！！");
+    }
+
+
     public static void main(String[] args) {
 //        int[] arr = new int[100];
         //角标从0开始的，最大的角标是数组的长度-1
