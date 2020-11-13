@@ -15,7 +15,7 @@ public class ArrayPrint {
 
 
     public static void main(String[] args) {
-//        int[] arr = new int[100];
+//        int[] arr = new int[100] ;
         //角标从0开始的，最大的角标是数组的长度-1
 
         //给数组赋值
